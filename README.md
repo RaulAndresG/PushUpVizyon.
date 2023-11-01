@@ -108,25 +108,40 @@ GROUP BY cl.nombre;
 **12. Mostrar la lista de empleados y la duración de su empleo en años **
 
 ```sql
-# Consulta realizada ....
+SELECT nombre AS NombreEmpleado, TIMESTAMPDIFF(YEAR, fecha_ingreso, CURDATE()) AS AniosTrabajados
+FROM empleado;
+
 ```
 
 **13. Obtener el nombre de las prendas junto con el valor total de ventas en dólares para cada una **
 
 ```sql
-# Consulta realizada ....
+SELECT p.Nombre AS Prenda, SUM(dv.cantidad * i.ValorVtaUsd) AS ValorTotalVentasUSD
+FROM prenda p  
+INNER JOIN inventario i ON p.IdPrenda = i.IdPrendaFkSELECT tp.descripcion AS TipoProteccion, COUNT(*) AS NumeroPrendasAsociadas
+FROM tipo_proteccion tp
+INNER JOIN prenda p ON tp.IdTipoProteccion = p.IdTipoProteccion
+GROUP BY tp.descripcion;
+
+INNER JOIN detalle_venta dv ON i.IdInventario = dv.IdProductoFk
+GROUP BY p.Nombre;
+
 ```
 
 **14. Obtener el nombre de las prendas junto con la cantidad mínima y máxima de insumos necesarios para su fabricación **
 
 ```sql
-# Consulta realizada ....
+SELECT tp.descripcion AS TipoProteccion, COUNT(*) AS NumeroPrendasAsociadas
+FROM tipo_proteccion tp
+INNER JOIN prenda p ON tp.IdTipoProteccion = p.IdTipoProteccion
+GROUP BY tp.descripcion;
+
 ```
 
 **15. Obtener la lista de empleados y su información de contacto, incluyendo el nombre, el cargo y el municipio **
 
 ```sql
-# Consulta realizada ....
+
 ```
 
 **16. Mostrar la lista de ventas realizadas en un rango de fechas específico junto con el nombre del cliente y la forma de pago **
